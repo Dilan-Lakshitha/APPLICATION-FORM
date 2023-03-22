@@ -1,18 +1,58 @@
-<button
-  style="width: 150px"
-  (click)="bulbState=!bulbState"> Switch:{{bulbState?'OFF':'ON'}}
-</button>
-<hr>
+<div class="outer">
+  <div class="inner">
+    <p class="alert alert-primary">
+    Customer Form
+    </p>
+    <label for="name">Customer Name</label>
+    <input type="text" id="name"
+           placeholder="Ex: Nimal"
+           class="form-control"
+           #name
+           (keyup)="setName(name.value)"
+    >
+    <br>
+    <label for="address">Customer Address</label>
+    <input type="text" id="address"
+           placeholder="Ex: colombo"
+           class="form-control"
+           #address
+           (keyup)="setAddress(address.value)"
+    >
+    <br>
+    <label for=salary>Customer Salary</label>
+    <input type="number" id="salary"
+           class="form-control"
+           #salary
+           (keyup)="setSalary(salary.value)"
+    >
+    <br>
+    <button class="btn btn-primary" (click)="saveCustomer()">Save Customer</button>
 
-<img
-  *ngIf="bulbState"
-  [src]="bulbOn"
-  style="width: 100px; height:100px"
-  alt=""
->
-<img
-  *ngIf="!bulbState"
-  [src]="bulbOff"
-  style="width: 100px; height:100px"
-  alt=""
->
+  </div>
+</div>
+<hr>
+<div class="container" *ngIf="customers.length>0">
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Salary</th>
+      <th>Option</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tempData of customers index  as position">
+      <td>{{position+1}}</td>
+      <td>{{tempData.name}}</td>
+      <td>{{tempData.address}}</td>
+      <td>{{tempData.salary}}</td>
+      <td>
+        <button class="btn btn-danger btn-sm">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
