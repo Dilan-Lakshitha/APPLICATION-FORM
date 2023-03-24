@@ -40,6 +40,7 @@
       <th>Name</th>
       <th>Address</th>
       <th>Salary</th>
+      <th>Date</th>
       <th>Option</th>
     </tr>
     </thead>
@@ -48,7 +49,8 @@
       <td>{{position+1}}</td>
       <td>{{tempData.name}}</td>
       <td>{{tempData.address}}</td>
-      <td>{{tempData.salary}}</td>
+      <td>{{tempData.salary | currency:'USD':'symbol'}}</td>
+      <td>{{tempData.registerDate | date:'EEEE,MMMM d, y'}}</td>
       <td>
         <button class="btn btn-danger btn-sm">Delete</button>
       </td>
@@ -56,3 +58,4 @@
     </tbody>
   </table>
 </div>
+<br>

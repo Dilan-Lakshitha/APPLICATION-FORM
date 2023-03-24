@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import {Data} from "@angular/router";
+
+export interface Customer{
+  name:string;
+  address:string;
+  salary:number;
+  registerDate:Date
+}
 
 @Component({
   selector: 'app-root',
@@ -6,7 +14,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  customers:any[]=[]
+  customers:Customer[]=[]
 
   name='';
   address='';
@@ -20,7 +28,8 @@ export class AppComponent {
       {
         'name':this.name,
         'address':this.address,
-        'salary':this.salary
+        'salary':this.salary,
+        'registerDate':new Date()
       }
     );
     console.log(this.customers)
