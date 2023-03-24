@@ -34,6 +34,9 @@ export class AppComponent {
     );
     console.log(this.customers)
   }
-
+  deleteCustomer(index:number){
+    if(confirm('Are you sure'))
+    this.customers.splice(index,1)
+}
 }
 
