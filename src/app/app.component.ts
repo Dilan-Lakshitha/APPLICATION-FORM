@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Data} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 export interface Customer{
   name:string;
@@ -14,6 +15,8 @@ export interface Customer{
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private toastrService: ToastrService) {
+  }
   customers:Customer[]=[]
 
   name='';
@@ -32,11 +35,23 @@ export class AppComponent {
         'registerDate':new Date()
       }
     );
-    console.log(this.customers)
+    this.popup('Customer Save!','Complete','success')
   }
   deleteCustomer(index:number){
     if(confirm('Are you sure'))
     this.customers.splice(index,1)
 }
+  popup(massage:string,title:string,type:string){
+    switch (type){
+      case 'success':
+        this.toastrService.success(massage,title,{
+         timeOut:5000,
+          positionClass:'toast-top-left',
+
+        });break;
+      case 'error':
+      case 'warning':
+    }
+  }
 }
 
