@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Data} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {FormControl, FormGroup} from "@angular/forms";
 
 export interface Customer{
   name:string;
@@ -17,6 +18,12 @@ export interface Customer{
 export class AppComponent {
   constructor(private toastrService: ToastrService) {
   }
+  customerForm= new FormGroup({
+    name:new FormControl(''),
+    address:new FormControl(''),
+    salary:new FormControl('')
+
+  });
   customers:Customer[]=[]
 
   name='';
