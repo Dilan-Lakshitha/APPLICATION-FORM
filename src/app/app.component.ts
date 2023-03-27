@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Data} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
-export interface Customer{
-  name:string;
-  address:string;
-  salary:number;
-  registerDate:Date
+export interface Customer {
+  name: string;
+  address: string;
+  salary: number;
+  registerDate: Date
 }
 
 @Component({
@@ -18,44 +18,69 @@ export interface Customer{
 export class AppComponent {
   constructor(private toastrService: ToastrService) {
   }
-  customerForm= new FormGroup({
-    name:new FormControl(''),
-    address:new FormControl(''),
-    salary:new FormControl('')
+
+  customerForm = new FormGroup({
+    name: new FormControl('',[
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(10),
+      ]),
+    address: new FormControl('',[
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(10),
+    ]),
+    salary: new FormControl('',[
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(10),
+    ]),
 
   });
-  customers:Customer[]=[]
+  customers: Customer[] = []
 
-  name='';
-  address='';
-  salary=0;
-  setName(name:string){this.name=name;}
-  setAddress(address:string){this.address=address}
-  setSalary(salary:string){this.salary=Number.parseInt(salary);}
+  name = '';
+  address = '';
+  salary = 0;
 
-  saveCustomer(){
+  setName(name: string) {
+    this.name = name;
+  }
+
+  setAddress(address: string) {
+    this.address = address
+  }
+
+  setSalary(salary: string) {
+    this.salary = Number.parseInt(salary);
+  }
+
+  saveCustomer() {
     this.customers.push(
       {
-        'name':this.name,
-        'address':this.address,
-        'salary':this.salary,
-        'registerDate':new Date()
+        'name': this.name,
+        'address': this.address,
+        'salary': this.salary,
+        'registerDate': new Date()
       }
     );
-    this.popup('Customer Save!','Complete','success')
+    this.popup('Customer Save!', 'Complete', 'success')
   }
-  deleteCustomer(index:number){
-    if(confirm('Are you sure'))
-    this.customers.splice(index,1)
-}
-  popup(massage:string,title:string,type:string){
-    switch (type){
-      case 'success':
-        this.toastrService.success(massage,title,{
-         timeOut:5000,
-          positionClass:'toast-top-left',
 
-        });break;
+  deleteCustomer(index: number) {
+    if (confirm('Are you sure'))
+      this.customers.splice(index, 1)
+  }
+
+  popup(massage: string, title: string, type: string) {
+    switch (type) {
+      case 'success':
+        this.toastrService.success(massage, title, {
+          timeOut: 5000,
+          positionClass: 'toast-top-left',
+
+        });
+        break;
       case 'error':
       case 'warning':
     }
