@@ -4,33 +4,28 @@
       <p class="alert alert-primary">
         Customer Form
       </p>
-      <label for="name">Customer Name</label>
-      <input type="text" id="name"
-             placeholder="Ex: Nimal"
-             class="form-control"
-             formControlName="name"
-      >
-      <p class="alert alert-danger"
-      *ngIf="customerForm?.get('name')?.invalid &&customerForm?.get('name')?.touched">Customer Name is Required</p>
-      <br>
-      <label for="address">Customer Address</label>
-      <input type="text" id="address"
-             placeholder="Ex: colombo"
-             class="form-control"
-             formControlName="address"
-      >
-      <p class="alert alert-danger" *ngIf="customerForm?.get('address')?.invalid &&customerForm?.get('address')?.touched">Customer address is Required</p>
-      <br>
-      <label for=salary>Customer Salary</label>
-      <input type="number" id="salary"
-             class="form-control"
-             formControlName="salary"
-      >
-      <p class="alert alert-danger" *ngIf="customerForm?.get('salary')?.invalid &&customerForm?.get('salary')?.touched">Customer salary is Required</p>
-      <br>
-      <button class="btn btn-primary"
-              type="submit" [disabled]="customerForm?.invalid" ] >Save Customer
-      </button>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Customer name</mat-label>
+        <input type="text" matInput
+               formControlName="name"
+               placeholder="Ex. nimal">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Customer Address</mat-label>
+        <input type="text" matInput
+               formControlName="address"
+               placeholder="Ex.colombo">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Customer Salary</mat-label>
+        <input type="number" matInput
+               formControlName="salary">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="customerForm.invalid"
+      >Save Customer</button>
     </form>
   </div>
 </div>

@@ -4,9 +4,9 @@ import {ToastrService} from "ngx-toastr";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 export interface Customer {
-  name: string;
-  address: string;
-  salary: number;
+  name: string | null|undefined;
+  address: string | null|undefined;
+  salary: string | null|undefined;
   registerDate: Date
 }
 
@@ -58,9 +58,9 @@ export class AppComponent {
   saveCustomer() {
     this.customers.push(
       {
-        'name': this.name,
-        'address': this.address,
-        'salary': this.salary,
+        'name': this.customerForm?.get('name')?.value,
+        'address': this.customerForm?.get('address')?.value,
+        'salary': this.customerForm?.get('salary')?.value,
         'registerDate': new Date()
       }
     );
